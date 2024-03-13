@@ -16,7 +16,7 @@ return array(
     'production' => 'Production',
     'connection' => 'Connection',
     'checkout.intro' => 'You are paying an invoice with amount <strong>:price</strong>.
-        Click on the button below to finish your payment with PayPal before using plan.',
+        Click on the button below to finish your payment with Paytr before using plan.',
     'pay_with_paytr' => 'Pay with Paytr',
     'mapping' => 'Plan - Paytr Product Mapping',
     'mapping.intro' => 'You need to select Paytr products associated with the plans in the system.<br>

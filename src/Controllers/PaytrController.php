@@ -8,6 +8,7 @@ use Acelle\Model\Invoice;
 use Acelle\Paytr\Paytr;
 use Acelle\Library\Facades\Billing;
 use Acelle\Library\TransactionResult;
+use Acelle\Library\AutoBillingData;
 
 class PaytrController extends BaseController
 {
@@ -74,32 +75,13 @@ class PaytrController extends BaseController
 
     public function success(Request $request, $invoice_uid)
     {
-        $invoice = Invoice::findByUid($invoice_uid);
-        $paytr = Paytr::initialize($invoice);
-
-        $post = $_POST;
-
-        $merchant_key   = $paytr->gateway->merchant_key;
-        $merchant_salt  = $paytr->gateway->merchant_salt;
-
-        $hash = base64_encode( hash_hmac('sha256', $post['merchant_oid'].$merchant_salt.$post['status'].$post['total_amount'], $merchant_key, true) );
-
-        if( $hash != $post['hash'] )
-            die('PAYTR notification failed: bad hash');
-
-        if( $post['status'] == 'success' ) { 
-            ok;
-        } else { 
-            var_dump($post);
-        }
-
-        echo "OK";
-        exit;
+        return redirect()->away(Billing::getReturnUrl());
     }
 
     public function notification(Request $request)
     {
-        $invoice = Invoice::findByUid($request->merchant_oid);
+        $invoice = Invoice::findByUid(explode('0000', $request->merchant_oid)[1]);
+        $customer = $invoice->customer;
 
         try {
             $paytr = Paytr::initialize($invoice);
@@ -114,7 +96,15 @@ class PaytrController extends BaseController
             if( $hash != $post['hash'] )
                 throw new \Exception('PAYTR notification failed: bad hash');
 
-            if( $post['status'] == 'success' ) { 
+            if( $post['status'] == 'success' ) {
+
+                if (isset($post['utoken'])) {
+                    // save billing data
+                    $autoBillingData = new AutoBillingData($paytr->gateway, $post);
+                    $customer->setAutoBillingData($autoBillingData);
+                }
+                    
+
                 $invoice->checkout($paytr->gateway, function($invoice) {
                     return new TransactionResult(TransactionResult::RESULT_DONE);
                 });
