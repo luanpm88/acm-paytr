@@ -5,6 +5,13 @@ return array(
     'merchant_key.title' => 'Store Password (merchant_key)',
     'merchant_salt.title' => 'Store Secret Key (merchant_salt)',
 
+    'enter_card' => 'Enter Card Information',
+    'holder_name' => 'Card holder name',
+    'expiry_month' => 'Expiry month',
+    'expiry_year' => 'Expiry Year',
+    'cvv' => 'CVV',
+    'copy_notification_link' => 'Copy this to Paytr Merchant Panel > Settings > Notification URL settings',
+
     'intro' => 'This is the introduction of the plugin, feel free to modify this message in the translation file',
     'public_key' => 'Public key',
     'secret_key' => 'Secret key',

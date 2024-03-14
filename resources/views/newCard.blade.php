@@ -1,4 +1,4 @@
-<h4 class="fw-600 mb-3 mt-0">Enter Card Information</h4>
+<h4 class="fw-600 mb-3 mt-0">{{ trans('paytr::enter_card') }}</h4>
 
 <?php
 $merchant_id = $paytr->gateway->merchant_id;
@@ -56,7 +56,7 @@ $utoken = "";
 
 <form action="<?php echo $post_url; ?>" method="post">
     <div class="mb-4"> 
-        <label class="form-label required">Card Holder Name</label>
+        <label class="form-label required">{{ trans('paytr::messages.holder_name') }}</label>
         <input type="text" class="form-control"
             name="cc_owner"
             value="TEST KARTI"
@@ -64,7 +64,7 @@ $utoken = "";
     </div>
 
     <div class="mb-4"> 
-        <label class="form-label required">Card Number</label>
+        <label class="form-label required">{{ trans('paytr::messages.card_number') }}</label>
         <input type="text" class="form-control"
             name="card_number"
             value="4355084355084358"
@@ -74,7 +74,7 @@ $utoken = "";
     <div class="row">
         <div class="col-md-4">
             <div class="mb-4"> 
-                <label class="form-label required">Card Month</label>
+                <label class="form-label required">{{ trans('paytr::messages.expiry_month') }}</label>
                 <input type="text" class="form-control"
                     name="expiry_month"
                     value="12"
@@ -83,7 +83,7 @@ $utoken = "";
         </div>
         <div class="col-md-4">
             <div class="mb-4"> 
-                <label class="form-label required">Card Year</label>
+                <label class="form-label required">{{ trans('paytr::messages.expiry_year') }}</label>
                 <input type="text" class="form-control"
                     name="expiry_year"
                     value="99"
@@ -92,7 +92,7 @@ $utoken = "";
         </div>
         <div class="col-md-4">
             <div class="mb-4"> 
-                <label class="form-label required">CVV</label>
+                <label class="form-label required">{{ trans('paytr::messages.cvv') }}</label>
                 <input type="text" class="form-control"
                     name="cvv"
                     value="000"

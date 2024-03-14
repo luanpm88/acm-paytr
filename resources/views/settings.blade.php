@@ -68,7 +68,7 @@
         </div>
 
         <div>
-            <p class="mb-2">Copy this to Paytr Merchant Panel > Settings > Notification URL settings</p>
+            <p class="mb-2">{{ trans('paytr::messages.copy_notification_link') }}</p>
             <p style="margin-bottom: 30px" class="d-flex align-items-center">
                 <code style="font-size: 18px" class="api-enpoint">{{ action('\Acelle\Paytr\Controllers\PaytrController@notification') }}</code>
                 <button type="button" class="btn btn-secondary api-copy-button ml-4"><i class="material-symbols-rounded me-2">content_copy</i>{{ trans('messages.copy') }}</button>
