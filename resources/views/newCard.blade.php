@@ -13,7 +13,7 @@ $merchant_fail_url = action('\Acelle\Paytr\Controllers\PaytrController@failed', 
 
 $user_basket = htmlentities(json_encode(array(
     // Array items: Product name - Price - Piece
-    // array("Basket Example Product", "18.00", 1),
+    array($invoice->title, $invoice->total(), 1),
     // array("Basket Example Product", "33,25", 5)
 )));
 
