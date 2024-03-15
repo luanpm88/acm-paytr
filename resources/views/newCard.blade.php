@@ -1,4 +1,4 @@
-<h4 class="fw-600 mb-3 mt-0">{{ trans('paytr::enter_card') }}</h4>
+<h4 class="fw-600 mb-3 mt-0">{{ trans('paytr::messages.enter_card') }}</h4>
 
 <?php
 $merchant_id = $paytr->gateway->merchant_id;
