@@ -111,6 +111,9 @@ class PaytrController extends BaseController
             } else { 
                 throw new \Exception('Pay error: ' . json_encode($post));
             }
+
+            echo "OK";
+            exit;
         } catch (\Exception $e) {
             $invoice->checkout($paytr->gateway, function($invoice) use ($e) {
                 return new TransactionResult(TransactionResult::RESULT_FAILED, $e->getMessage());
