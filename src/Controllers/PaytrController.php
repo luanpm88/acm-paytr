@@ -81,6 +81,11 @@ class PaytrController extends BaseController
     public function notification(Request $request)
     {
         $invoice = Invoice::findByUid(explode('0000', $request->merchant_oid)[1]);
+
+        if (!$invoice) {
+            return 'Customer not found!';
+        }
+
         $customer = $invoice->customer;
 
         try {
