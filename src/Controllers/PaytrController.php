@@ -49,8 +49,20 @@ class PaytrController extends BaseController
 
     public function checkout(Request $request, $invoice_uid)
     {        
+        // language
+        \App::setLocale(\Acelle\Model\Language::find(\Acelle\Model\Setting::get('default_language'))->code);
+        
         $invoice = Invoice::findByUid($invoice_uid);
         $paytr = Paytr::initialize($invoice);
+
+        // free plan. No charge
+        if ($invoice->total() == 0) {
+            $invoice->checkout($paytr->gateway, function($invoice) {
+                return new TransactionResult(TransactionResult::RESULT_DONE);
+            });
+
+            return redirect()->away(Billing::getReturnUrl());;
+        }
         
         // Save return url
         if ($request->return_url) {
@@ -80,15 +92,30 @@ class PaytrController extends BaseController
 
     public function notification(Request $request)
     {
-        $invoice = Invoice::findByUid(explode('0000', $request->merchant_oid)[1]);
-
-        if (!$invoice) {
-            return 'Customer not found!';
-        }
-
-        $customer = $invoice->customer;
-
         try {
+            if (!$request->merchant_oid) {
+                echo 'merchant_oid not found!';
+                exit;
+            }
+    
+            $numbers = explode('0000', $request->merchant_oid);
+    
+            // Not ACM invoice number
+            if (!isset($numbers[1])) {
+                echo 'Invoice not found! ' . $request->merchant_oid;
+                exit;
+            }
+    
+            $invoice = Invoice::findByUid($numbers[1]);
+    
+            // Not found in db
+            if (!$invoice) {
+                echo 'Invoice not found!' . $request->merchant_oid;
+                exit;
+            }
+    
+            $customer = $invoice->customer;
+
             $paytr = Paytr::initialize($invoice);
 
             $post = $_POST;
@@ -123,6 +150,9 @@ class PaytrController extends BaseController
             $invoice->checkout($paytr->gateway, function($invoice) use ($e) {
                 return new TransactionResult(TransactionResult::RESULT_FAILED, $e->getMessage());
             });
+
+            echo "Failed: " . $e->getMessage();
+            exit;
         }
     }
 

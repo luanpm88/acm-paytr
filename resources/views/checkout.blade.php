@@ -12,7 +12,7 @@
             <div class="col-md-4 mt-40 pd-60">
                 <img class="rounded" width="80%" src="{{ $paytr->plugin->getIconUrl() }}" />
             </div>
-            <div class="col-md-4 mt-40 pd-60">                
+            <div class="col-md-4 mt-40 pd-60">
                 <h2 class="mb-40">{{ $invoice->title }}</h2>
                 <p>{!! trans('paytr::messages.checkout.intro', [
                     'price' => format_price($invoice->total(), $invoice->currency->format),
@@ -28,7 +28,7 @@
                     ]) }}">
                         {{ csrf_field() }}
                         <a href="javascript:;" onclick="$('#cancelForm').submit()">
-                            {{ trans('messages.subscription.cancel_now_change_other_plan') }}
+                            {{ trans('paytr::messages.subscription.cancel_now_change_other_plan') }}
                         </a>
                     </form>
                     

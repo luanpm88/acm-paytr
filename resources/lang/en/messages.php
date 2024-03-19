@@ -4,7 +4,7 @@ return array(
     'merchant_id.title' => 'Store No (merchant_id)',
     'merchant_key.title' => 'Store Password (merchant_key)',
     'merchant_salt.title' => 'Store Secret Key (merchant_salt)',
-
+    'submit' => 'Submit',
     'enter_card' => 'Enter Card Information',
     'holder_name' => 'Card holder name',
     'expiry_month' => 'Expiry month',
@@ -59,4 +59,6 @@ return array(
         Supports Netbanking, Credit, Debit Cards etc',
     'payment_settings' => 'Payment settings',
     'paytr_gateway_settings' => 'Update Paytr Keys',
+    'card_number' => 'Card number',
+    'subscription.cancel_now_change_other_plan' => 'Change your mind? Click here to cancel this invoice.',
 );

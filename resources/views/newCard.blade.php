@@ -13,8 +13,9 @@ $merchant_fail_url = action('\Acelle\Paytr\Controllers\PaytrController@failed', 
 
 $user_basket = htmlentities(json_encode(array(
     // Array items: Product name - Price - Piece
-    array($invoice->title, $invoice->total(), 1),
+    // array("Basket Example Product", "18.00", 1),
     // array("Basket Example Product", "33,25", 5)
+array($invoice->title, $invoice->total(), 1),
 )));
 
 srand(time());
@@ -59,7 +60,7 @@ $utoken = "";
         <label class="form-label required">{{ trans('paytr::messages.holder_name') }}</label>
         <input type="text" class="form-control"
             name="cc_owner"
-            value="TEST KARTI"
+            value=""
         />
     </div>
 
@@ -67,7 +68,7 @@ $utoken = "";
         <label class="form-label required">{{ trans('paytr::messages.card_number') }}</label>
         <input type="text" class="form-control"
             name="card_number"
-            value="4355084355084358"
+            value=""
         />
     </div>
 
@@ -77,7 +78,7 @@ $utoken = "";
                 <label class="form-label required">{{ trans('paytr::messages.expiry_month') }}</label>
                 <input type="text" class="form-control"
                     name="expiry_month"
-                    value="12"
+                    value=""
                 />
             </div>
         </div>
@@ -86,7 +87,7 @@ $utoken = "";
                 <label class="form-label required">{{ trans('paytr::messages.expiry_year') }}</label>
                 <input type="text" class="form-control"
                     name="expiry_year"
-                    value="99"
+                    value=""
                 />
             </div>
         </div>
@@ -95,7 +96,7 @@ $utoken = "";
                 <label class="form-label required">{{ trans('paytr::messages.cvv') }}</label>
                 <input type="text" class="form-control"
                     name="cvv"
-                    value="000"
+                    value=""
                 />
             </div>
         </div>
@@ -126,6 +127,6 @@ $utoken = "";
     <input type="hidden" name="store_card" value="1"/>
 
     <div class="mt-2">
-        <input type="submit" value="Submit" class="btn btn-primary">
+        <input type="submit" value="{{ trans('paytr::messages.submit') }}" class="btn btn-primary">
     </div>
 </form>
