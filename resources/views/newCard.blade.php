@@ -38,8 +38,8 @@ $payment_amount = $invoice->total();
 $currency = $invoice->getCurrencyCode();;
 $payment_type = "card";
 
-$card_type = "axess"; // Sent only in installments. Avaliable values; advantage, axess, bonus, cardfinans, maximum, paraf, world
-$installment_count = "5"; // 2-12 sent only in installments
+// $card_type = "axess"; // Sent only in installments. Avaliable values; advantage, axess, bonus, cardfinans, maximum, paraf, world
+$installment_count = "0"; // 2-12 sent only in installments
 
 $post_url = "https://www.paytr.com/odeme";
 
@@ -122,7 +122,6 @@ $utoken = "";
     <input type="hidden" name="paytr_token" value="<?php echo $token; ?>">
     <input type="hidden" name="non3d_test_failed" value="<?php echo $non3d_test_failed; ?>">
     <input type="hidden" name="installment_count" value="<?php echo $installment_count; ?>">
-    <input type="hidden" name="card_type" value="<?php echo $card_type; ?>">
     <input type="hidden" name="utoken" value="<?php echo $utoken; ?>">
     <input type="hidden" name="store_card" value="1"/>
 
