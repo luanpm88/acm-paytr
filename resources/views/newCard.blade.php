@@ -114,9 +114,9 @@ $utoken = "";
     <input type="hidden" name="non_3d" value="<?php echo $non_3d; ?>">
     <input type="hidden" name="merchant_ok_url" value="<?php echo $merchant_ok_url; ?>">
     <input type="hidden" name="merchant_fail_url" value="<?php echo $merchant_fail_url; ?>">
-    <input type="hidden" name="user_name" value="Paytr Test">
-    <input type="hidden" name="user_address" value="test test test">
-    <input type="hidden" name="user_phone" value="05555555555">
+    <input type="hidden" name="user_name" value="<?php echo $invoice->getBillingName(); ?>">
+    <input type="hidden" name="user_address" value="<?php echo $invoice->billing_address; ?>">
+    <input type="hidden" name="user_phone" value="<?php echo $invoice->billing_phone; ?>">
     <input type="hidden" name="user_basket" value="<?php echo $user_basket; ?>">
     <input type="hidden" name="debug_on" value="1">
     <input type="hidden" name="paytr_token" value="<?php echo $token; ?>">
